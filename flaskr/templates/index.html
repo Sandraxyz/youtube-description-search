@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Youtube Description Search</title>
+    </head>
+        <body>
+            <h1>Youtube Description Search</h1>
+            {{name}}
+            
+            <form action="/query?q={{ queryTerm }}" method = "GET">
+                <input name="q" placeholder="search here" type="text" values="">
+                <input name="search_button" type="submit", value="search videos" >
+            </form>
+
+            <form action="/query?q={{ queryTerm }}" method = "GET">
+                <input name="q" placeholder="search here" type="text" values="">
+                <input name="search_button" type="submit", value="search music videos" >
+            </form>
+            {% if data is defined %}
+                <ol>
+                {% for item in data %}
+                    <li class="youtube-video">{{ item['snippet']['title'] }}
+                        <br /> <span> {{ item['snippet']['description'] | safe }} </span>
+                        <br /> <a href="http://www.youtube.com/watch?v={{item['id']}}" target='_blank'>link</a>
+
+                    </li>
+                    <li class="youtube-video">{{ item['snippet']['title'] }}
+                        <br /> <span> {{ item['snippet']['description'] | safe }} </span>
+                        <br /> <a href="http://www.youtube.com/watch?v={{item['id']}}" target='_blank'>link</a>
+                    </li>
+                {% endfor %}
+            
+            {% else %}
+                
+
+            {% endif %}
+                
+        </body>
+</html>
